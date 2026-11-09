@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     private float _verticalVelocity;
     private float _xRotation;
     private float _cameraBaseHeight;
-    
     private float _currentBobSpeed;
     private float _currentBobAmount;
     private float _headbobTimer;
@@ -93,8 +92,6 @@ public class PlayerController : MonoBehaviour
         HandleGravity();
         
         ApplyMovement();
-        
-        HandleCameraHeight();
         
         HandleHeadbob();
     }
@@ -274,6 +271,8 @@ public class PlayerController : MonoBehaviour
             ResetHeadbob();
         }
     }
-    
+
     #endregion
+    
+    
 }

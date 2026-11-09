@@ -839,6 +839,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2082597505}
     m_Modifications:
+    - target: {fileID: 3288194600766843368, guid: ba6bcb91ae42f0b4d81cc44a646cdf0b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eb1c87fcb17ec0f49a8a37e1a64c8c17, type: 2}
     - target: {fileID: 3936990367949195325, guid: ba6bcb91ae42f0b4d81cc44a646cdf0b, type: 3}
       propertyPath: m_Name
       value: Floor
@@ -2236,6 +2240,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSprintAbility
   sprintSetting: 0
   sprintingSpeed: 12
+  sprintBobSpeed: 16
+  sprintBobAmount: 0.1
+  onSprintStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onSprintEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &342215390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,6 +2264,8 @@ MonoBehaviour:
   crouchingHeight: 1
   cameraCrouchingHeight: 0.9
   crouchingSpeed: 2
+  crouchBobSpeed: 8
+  crouchBobAmount: 0.025
   ceilingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -7686,6 +7700,62 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 342215385}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableInputs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 342215385}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableInputs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037349842770547758, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
+      propertyPath: onDialogueStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7485599463725279289, guid: 0e0e1792c3d1dde4aad0b5c184fd6784, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -8106,6 +8176,10 @@ GameObject:
   - component: {fileID: 1501520317}
   - component: {fileID: 1501520316}
   - component: {fileID: 1501520315}
+  - component: {fileID: 1501520321}
+  - component: {fileID: 1501520320}
+  - component: {fileID: 1501520319}
+  - component: {fileID: 1501520322}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -8160,6 +8234,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d297018a16f285f44ad910522cf5f103, type: 2}
+  - {fileID: 2100000, guid: d297018a16f285f44ad910522cf5f103, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8199,13 +8274,155 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501520314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.72676, y: 0.138, z: 2.24527}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -4.55, y: 0.15, z: -0.7}
   m_LocalScale: {x: 0.31, y: 0.26, z: 0.42}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1501520319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501520314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b5e47a85b880f4c8ec852b04a34b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddMaterial
+  meshRenderer: {fileID: 2005036865}
+  outlineMaterials:
+  - {fileID: 2100000, guid: d297018a16f285f44ad910522cf5f103, type: 2}
+  - {fileID: 2100000, guid: 00093687e07acf548a05f7e3177d67b8, type: 2}
+  defaultMaterials:
+  - {fileID: 2100000, guid: d297018a16f285f44ad910522cf5f103, type: 2}
+  - {fileID: 2100000, guid: d297018a16f285f44ad910522cf5f103, type: 2}
+--- !u!114 &1501520320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501520314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2459e9be89d49a0ba62942a93220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interaction
+  interactableId: 
+  interactionGroups:
+  - interactionName: 
+    onInteracted:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1501520314}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 820549423}
+          m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+          m_MethodName: SetInteractionIndex
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    nextInteractionId: 0
+  interactionIndex: 0
+--- !u!114 &1501520321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501520314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4388b3e8c7c6a0e4fa4188463bdc7c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
+  canInteract: 1
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1501520320}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHovered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1501520319}
+        m_TargetAssemblyTypeName: AddMaterial, Assembly-CSharp
+        m_MethodName: ChangeToOutlineMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onUnhovered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1501520319}
+        m_TargetAssemblyTypeName: AddMaterial, Assembly-CSharp
+        m_MethodName: ChangeToDefaultMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1501520322
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501520314}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1503125003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10502,6 +10719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 3643635648155618155, guid: d2a9dc2b0834b824e83cb19875e8584c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a46836d30843f424a92b3db1a053e62e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

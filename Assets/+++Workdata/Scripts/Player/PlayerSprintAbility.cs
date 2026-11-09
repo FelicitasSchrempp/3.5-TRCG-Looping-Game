@@ -1,5 +1,5 @@
-using Unity.U2D.Physics;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerInput), typeof(PlayerController), typeof(PlayerStates))]
 public class PlayerSprintAbility : MonoBehaviour
@@ -10,7 +10,15 @@ public class PlayerSprintAbility : MonoBehaviour
 
     [Header("Sprint Settings")]
     [SerializeField] private SprintSetting sprintSetting = SprintSetting.Hold;
-    [SerializeField] private float sprintingSpeed = 12f;
+    [SerializeField] private float sprintingSpeed = 9f;
+    
+    [Header("Headbob Settings")] 
+    [SerializeField] private float sprintBobSpeed = 16f;
+    [SerializeField] private float sprintBobAmount = 0.1f;
+    
+    [Header("Events")] 
+    [SerializeField] private UnityEvent onSprintStarted;
+    [SerializeField] private UnityEvent onSprintEnded;
     
     #endregion
 
@@ -93,14 +101,17 @@ public class PlayerSprintAbility : MonoBehaviour
 
     private void OnStateChanged(MovementState oldState, MovementState newState)
     {
-        if (oldState == MovementState.Running)
+        if (newState == MovementState.Running)
         {
-            print("sprinting end");
+            _playerController.SetMoveSpeed(sprintingSpeed);
+            _playerController.SetHeadbob(sprintBobSpeed, sprintBobAmount);
+            
+            onSprintStarted?.Invoke();
         }
-        
-        if (newState != MovementState.Running) return;
-        
-        _playerController.SetMoveSpeed(sprintingSpeed);
+        else if (oldState == MovementState.Running)
+        {
+            onSprintEnded?.Invoke();
+        }
     }
 
     #endregion

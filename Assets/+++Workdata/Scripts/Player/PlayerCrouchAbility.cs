@@ -16,6 +16,11 @@ public class PlayerCrouchAbility : MonoBehaviour
     [SerializeField] private float cameraCrouchingHeight = 0.9f;
     [SerializeField] private float crouchingSpeed = 2f;
 
+    [Header("Headbob Settings")] 
+    [SerializeField] private float crouchBobSpeed = 8f;
+    [SerializeField] private float crouchBobAmount = 0.025f;
+    
+    [Header("Stand Up Check")] 
     [SerializeField] private LayerMask ceilingMask = ~0;
 
     [Header("Events")] 
@@ -126,12 +131,12 @@ public class PlayerCrouchAbility : MonoBehaviour
         {
             _playerController.SetHeight(crouchingHeight, cameraCrouchingHeight);
             _playerController.SetMoveSpeed(crouchingSpeed);
+            _playerController.SetHeadbob(crouchBobSpeed, crouchBobAmount);
             onCrouchStarted?.Invoke();
         }
         else if (oldState == MovementState.Crouching)
         {
             _playerController.ResetHeight();
-            _playerController.ResetMoveSpeed();
             onCrouchEnded?.Invoke();
         }
     }
