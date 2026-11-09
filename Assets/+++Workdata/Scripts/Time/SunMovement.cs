@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SunMovement : MonoBehaviour
@@ -6,6 +7,14 @@ public class SunMovement : MonoBehaviour
     [SerializeField] private float sunSpeed;
     private int currentWaypoint = 0;
     
+   // private Vector3 sunPosition;
+
+    private void Start()
+    {
+       // sunPosition = new Vector3(0f, 120f, 0f);
+       // transform.position = sunPosition;
+    }
+
     void Update()
     {
         if (waypoints.Length == 0) return;

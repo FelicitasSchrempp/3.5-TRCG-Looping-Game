@@ -1,12 +1,8 @@
 using System;
 using System.Collections;
-using System.Data.SqlTypes;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering;
 using RenderSettings = UnityEngine.RenderSettings;
 
@@ -56,7 +52,7 @@ public class SkyboxChanger : MonoBehaviour
         RenderSettings.skybox = daySkybox;
         light.intensity = 1f;
         
-        sunSphere.transform.position = new Vector3(0f, 60f, 0f);
+        sunSphere.transform.position = new Vector3(0f, 120f, 0f);
 
         // light.transform.rotation = Quaternion.Euler(50f, directionalLight.transform.rotation.y,  directionalLight.transform.rotation.z);
 
@@ -150,6 +146,10 @@ public class SkyboxChanger : MonoBehaviour
         if (time >= 11 && time <= 12)
         {
             PatrolNOTArchibald.SetNextWaypoint(1);
+        }
+        
+        if (time >= 11.2 && time <= 12)
+        {
             DropItem();
         }
 
@@ -170,8 +170,8 @@ public class SkyboxChanger : MonoBehaviour
     }
 
     private void DropItem()
-    {
-       item.SetActive(true);
+    { 
+        item.SetActive(true);
     }
 
     private void KillItem()
