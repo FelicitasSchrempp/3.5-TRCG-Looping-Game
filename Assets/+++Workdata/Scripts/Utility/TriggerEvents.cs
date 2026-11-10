@@ -12,7 +12,7 @@ public class TriggerEvents : MonoBehaviour
     [SerializeField] private UnityEvent<Collider> onTriggerEnter;
     
     [Tooltip("Invoked when OnTriggerExit() is called.")]
-    [SerializeField] private UnityEvent<Collider> onTriggerExit;
+    [SerializeField] public UnityEvent<Collider> onTriggerExit;
 
     [Tooltip("Enable to filter the interacting collider by a specified tag.")]
     [SerializeField] private bool filterOnTag = true;

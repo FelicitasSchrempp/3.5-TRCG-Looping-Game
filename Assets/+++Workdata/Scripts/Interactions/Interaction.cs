@@ -20,6 +20,8 @@ public class Interaction : MonoBehaviour
 
     public void Execute()
     {
+        Debug.Log("executing");
+        
         if (interactionGroups.Length < interactionIndex) return;
         
         InteractionGroup interactionGroup = interactionGroups[interactionIndex];
