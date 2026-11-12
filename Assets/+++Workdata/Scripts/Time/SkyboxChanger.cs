@@ -44,38 +44,15 @@ public class SkyboxChanger : MonoBehaviour
     
     public TMP_Text timeText;
 
-    public Collider middleTrigger;
-    public Collider archibaldTrigger;
-    public Collider NOTArchibaldTrigger;
-    public Collider cliffTrigger;
-    
-    private GameObject _player;
-    private Collider _playerCollider;
-    
-    private TriggerEvents _triggerEvents;
-    private TriggerEvents _triggerEventsArchibald;
-    private TriggerEvents _triggerEventsNOTArchibald;
-
     private void Awake()
     {
         volume.weight = 1;
         light = directionalLight.GetComponent<Light>();
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _playerCollider = _player.GetComponentInChildren<Collider>();
-        
-        _triggerEvents = middleTrigger.GetComponent<TriggerEvents>();
-        _triggerEventsArchibald = archibaldTrigger.GetComponent<TriggerEvents>();
-        _triggerEventsNOTArchibald = NOTArchibaldTrigger.GetComponent<TriggerEvents>();
     }
 
     private void Start()
     {
         OnWakeUp?.Invoke();
-
-        middleTrigger.enabled = true;
-        archibaldTrigger.enabled = false;
-        NOTArchibaldTrigger.enabled = false;
-        cliffTrigger.enabled = false;
         
         SunRotation.OnSunReset?.Invoke();
         
@@ -133,7 +110,6 @@ public class SkyboxChanger : MonoBehaviour
 
         CheckRoutineArchibald();
         CheckRoutineNOTArchibald();
-        TimeTable();
     }
 
     private IEnumerator Transition()
@@ -225,45 +201,6 @@ public class SkyboxChanger : MonoBehaviour
         }
     }
 
-    private void TimeTable()
-    {
-        if (time >= 11 && time <= 12)
-        {
-            middleTrigger.enabled = false;
-            _triggerEvents.onTriggerExit?.Invoke(_playerCollider);
-        }
-        
-        if (time >= 11.5 && time <= 12)
-        {
-            archibaldTrigger.enabled = true;
-            NOTArchibaldTrigger.enabled = true;
-        }
-        
-        if (time >= 17 && time <= 18)
-        {
-           archibaldTrigger.enabled = false;
-           NOTArchibaldTrigger.enabled = false;
-           _triggerEventsArchibald.onTriggerExit?.Invoke(_playerCollider);
-           _triggerEventsNOTArchibald.onTriggerExit?.Invoke(_playerCollider);
-        }
-        
-        if (time >= 17.5 && time <= 18)
-        {
-            middleTrigger.enabled = true;
-        }
-        
-        if (time >= 22 && time <= 23)
-        {
-            middleTrigger.enabled = false;
-            _triggerEvents.onTriggerExit?.Invoke(_playerCollider);
-        }
-        
-        if (time >= 22.5 && time <= 23)
-        {
-            cliffTrigger.enabled = true;
-        }
-    }
-
     private void DropItem()
     { 
         item.SetActive(true);
@@ -272,11 +209,6 @@ public class SkyboxChanger : MonoBehaviour
     private void KillItem()
     {
         item.SetActive(false);
-    }
-
-    public void SetTime(int time)
-    {
-        Time.timeScale = time;
     }
 
     private void Hours()
