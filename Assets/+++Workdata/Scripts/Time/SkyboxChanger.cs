@@ -8,8 +8,15 @@ using RenderSettings = UnityEngine.RenderSettings;
 
 public class SkyboxChanger : MonoBehaviour
 {
+    private int HashActionTrigger = Animator.StringToHash("ActionTrigger");
+    private int HashActionId = Animator.StringToHash("ActionID");
+    
+    
     public NavMeshPatrol PatrolArchibald;
     public NavMeshPatrol PatrolNOTArchibald;
+    
+    public Animator archibaldAnimator;
+    public Animator notArchibaldAnimator;
     
     public Material daySkybox;
     public Material noonSkybox;
@@ -30,6 +37,8 @@ public class SkyboxChanger : MonoBehaviour
     public float ReadTime => time;
 
     private int hat;
+
+    public bool alreadyAnimation = false;
 
     public SceneLoader sceneLoader;
     
@@ -137,6 +146,11 @@ public class SkyboxChanger : MonoBehaviour
         sceneLoader.LoadSceneByName("Prototype");
     }
 
+    public void CallTransition()
+    {
+        StartCoroutine(Transition());
+    }
+
     private void CheckRoutineArchibald()
     {
         if (time >= 6 && time <= 7)
@@ -157,6 +171,19 @@ public class SkyboxChanger : MonoBehaviour
         if (time >= 22 && time <= 23)
         {
             PatrolArchibald.SetNextWaypoint(3);
+        }
+        
+        if (time >= 1.2 && time <= 2)
+        {
+            if (alreadyAnimation) return;
+            
+            SetAnimationAction(1);
+            alreadyAnimation = true;
+        }
+        
+        if (time >= 2.5 && time <= 3)
+        {
+            PatrolArchibald.gameObject.SetActive(false);
         }
     }
     
@@ -190,6 +217,11 @@ public class SkyboxChanger : MonoBehaviour
         if (time >= 22 && time <= 23)
         {
             PatrolNOTArchibald.SetNextWaypoint(3);
+        }
+        
+        if (time >= 0 && time <= 1)
+        {
+            SetAnimationAction2(2);
         }
     }
 
@@ -294,4 +326,16 @@ public class SkyboxChanger : MonoBehaviour
 
         //  StartCoroutine(ChangeSkybox());
     }
+    
+    public void SetAnimationAction(int actionId)
+    { 
+        archibaldAnimator.SetTrigger(HashActionTrigger); 
+        archibaldAnimator.SetInteger(HashActionId, actionId);
+    } 
+    
+    public void SetAnimationAction2(int actionId)
+    { 
+        notArchibaldAnimator.SetTrigger(HashActionTrigger); 
+        notArchibaldAnimator.SetInteger(HashActionId, actionId);
+    } 
 }
