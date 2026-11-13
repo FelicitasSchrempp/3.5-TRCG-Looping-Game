@@ -136,6 +136,8 @@ public class DialogueController : MonoBehaviour
     private IEnumerator DelayDialogueEndEvent()
     {
         yield return new WaitForSeconds(0.2f);
+        
+        Debug.Log("Delay Dialogue End");
         onDialogueEnd?.Invoke();
     }
 

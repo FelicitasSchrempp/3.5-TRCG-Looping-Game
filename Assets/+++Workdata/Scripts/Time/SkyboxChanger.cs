@@ -39,15 +39,31 @@ public class SkyboxChanger : MonoBehaviour
     private int hat;
 
     public bool alreadyAnimation = false;
+    public bool timeInDialouge = false;
 
     public SceneLoader sceneLoader;
     
     public TMP_Text timeText;
+    
+    public Collider middleCollider;
+    public Collider archibaldCollider;
+    public Collider NOTArchibaldCollider;
+    public Collider cliffCollider;
+    
+    private MultipleInteractable middleTrigger;
+    private MultipleInteractable archibaldTrigger;
+    private MultipleInteractable NOTArchibaldTrigger;
+    private MultipleInteractable cliffTrigger;
 
     private void Awake()
     {
         volume.weight = 1;
         light = directionalLight.GetComponent<Light>();
+        
+        middleTrigger = middleCollider.gameObject.GetComponent<MultipleInteractable>();
+        archibaldTrigger = archibaldCollider.gameObject.GetComponent<MultipleInteractable>();
+        NOTArchibaldTrigger = NOTArchibaldCollider.gameObject.GetComponent<MultipleInteractable>();
+        cliffTrigger = cliffCollider.gameObject.GetComponent<MultipleInteractable>();
     }
 
     private void Start()
@@ -63,15 +79,19 @@ public class SkyboxChanger : MonoBehaviour
         
         sunSphere.transform.position = new Vector3(0f, 120f, 0f);
 
+        middleCollider.enabled = true;
+
         // light.transform.rotation = Quaternion.Euler(50f, directionalLight.transform.rotation.y,  directionalLight.transform.rotation.z);
 
-      //  StartCoroutine(ChangeSkybox());
+        //  StartCoroutine(ChangeSkybox());
 
         // Hours();
     }
 
     private void Update()
     {
+        if (timeInDialouge) return;
+        
         time += Time.deltaTime * 0.3f; // * 10 fuer schneller
             
        // float lightRotationX = light.transform.rotation.eulerAngles.x;
@@ -110,6 +130,7 @@ public class SkyboxChanger : MonoBehaviour
 
         CheckRoutineArchibald();
         CheckRoutineNOTArchibald();
+        TriggerSchedule();
     }
 
     private IEnumerator Transition()
@@ -201,6 +222,41 @@ public class SkyboxChanger : MonoBehaviour
         }
     }
 
+    private void TriggerSchedule()
+    {
+        if (time >= 11 && time <= 12)
+        {
+            middleCollider.enabled  = false;
+            middleTrigger.Unhover();
+        }
+        
+        if (time >= 11.5 && time <= 12)
+        {
+            archibaldCollider.enabled = true;
+            NOTArchibaldCollider.enabled = true;
+        }
+        
+        if (time >= 17 && time <= 18)
+        {
+            archibaldCollider.enabled = false;
+            NOTArchibaldCollider.enabled = false;
+            archibaldTrigger.Unhover();
+            NOTArchibaldTrigger.Unhover();
+        }
+        
+        if (time >= 17.5 && time <= 18)
+        {
+            middleCollider.enabled = true;
+        }
+        
+        if (time >= 23 && time <= 24)
+        {
+            middleCollider.enabled = false;
+            middleTrigger.Unhover();
+            cliffCollider.enabled = true;
+        }
+    }
+
     private void DropItem()
     { 
         item.SetActive(true);
@@ -239,6 +295,11 @@ public class SkyboxChanger : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void SetTime(bool timeDialouge)
+    {
+        timeInDialouge = timeDialouge;
     }
 
 

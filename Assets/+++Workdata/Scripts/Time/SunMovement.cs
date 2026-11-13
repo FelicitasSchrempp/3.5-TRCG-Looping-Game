@@ -7,6 +7,8 @@ public class SunMovement : MonoBehaviour
     [SerializeField] private float sunSpeed;
     private int currentWaypoint = 0;
     
+    public bool ballInDialouge = false;
+    
    // private Vector3 sunPosition;
 
     private void Start()
@@ -18,6 +20,7 @@ public class SunMovement : MonoBehaviour
     void Update()
     {
         if (waypoints.Length == 0) return;
+        if (ballInDialouge) return;
       
         transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypoint].position, sunSpeed * Time.deltaTime);
 
@@ -25,5 +28,10 @@ public class SunMovement : MonoBehaviour
         {
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
         }
+    }
+
+    public void StopSunMovement(bool ballDialouge)
+    {
+        ballInDialouge = ballDialouge;
     }
 }
